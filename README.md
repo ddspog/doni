@@ -1,4 +1,4 @@
-# doni
+# doni [![Go Report Card](https://goreportcard.com/badge/github.com/ddspog/doni)](https://goreportcard.com/report/github.com/ddspog/doni) [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 By [ddspog](https://github.com/ddspog)
 
@@ -6,7 +6,7 @@ By [ddspog](https://github.com/ddspog)
 
 ## License
 
-You are free to copy, modify and distribute **cvinfo** with attribution under the terms of the MIT license. See the [LICENSE](https://github.com/ddspog/doni/blob/master/LICENSE) file for details.
+You are free to copy, modify and distribute **doni** with attribution under the terms of the MIT license. See the [LICENSE](https://github.com/ddspog/doni/blob/master/LICENSE) file for details.
 
 ## Installation
 
