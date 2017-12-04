@@ -12,6 +12,7 @@ add-gen-code-project:
     - go generate {{ .REPO }}/project
   sources:
     - project/gen_version.go
+    - version
   generates:
     - project/version.go
   method: checksum
@@ -24,7 +25,7 @@ add-gen-code:
 build:
   deps: [add-gen-code]
   cmds:
-    - echo "Building doni..."
+    - echo "- Building doni..."
     - go build
   sources:
     - /**/*.go

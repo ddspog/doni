@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"strings"
 	"text/template"
 	"time"
 )
@@ -30,7 +31,7 @@ func parseTemplate(t string) *template.Template {
 
 func readVersion() string {
 	if c, err := ioutil.ReadFile(pathToVersion); err == nil {
-		return string(c)
+		return strings.TrimSuffix(string(c), "\r\n")
 	}
 
 	return ""
