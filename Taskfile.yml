@@ -1,8 +1,8 @@
 rem-gen-code-project:
   cmds:
     - rm .\project\version.go &>/dev/null || echo >/dev/null
-  sources:
-    - project/version.go
+  status:
+    - test ! -f project/version.go
   silent: true
 
 add-gen-code-project:
@@ -58,3 +58,27 @@ test-project:
 test:
   deps: [test-project]
   desc: Execute the tests on project.
+
+fetch-gometalinter:
+  cmds:
+    - go get github.com/alecthomas/gometalinter
+  status:
+    - test -f {{ .GOPATH }}/bin/gometalinter{{ exeExt }}
+  silent: true
+
+install-linters:
+  deps: [fetch-gometalinter]
+  cmds:
+    - gometalinter --install --update
+  status:
+    - test -f {{ .GOPATH }}/bin/lll{{ exeExt }}
+  silent: true
+  desc: Install linter tools.
+  
+lint-lll:
+  deps: [install-linters]
+  cmds:
+    - echo "- Checking line length on project."
+    - lll -g -l {{ .LINE_LENGTH }} .
+  silent: true
+  desc: Check line lenght on project.
