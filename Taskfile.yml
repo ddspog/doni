@@ -34,6 +34,19 @@ build:
   silent: true
   desc: Build doni executable.
 
+install:
+  deps: [add-gen-code]
+  cmds:
+    - echo "Installing doni..."
+    - go install
+  sources:
+    - /**/*.go
+  generates:
+    - /{{ .GOPATH }}/bin/doni{{ exeExt }}
+  method: checksum
+  silent: true
+  desc: Install doni program.
+
 test-project:
   deps: [add-gen-code-project]
   cmds:
