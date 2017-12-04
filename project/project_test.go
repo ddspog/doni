@@ -10,7 +10,7 @@ import (
 // - As a developer,
 // - I want to consult the version of the project,
 // - So that I can inform users on command.
-func TestVersion(t *testing.T) {
+func Test_Print_version_of_project(t *testing.T) {
 	given, like, s := bdd.Sentences()
 
 	given(t, "project has version v%[1]s", func(when bdd.When, args ...interface{}) {
