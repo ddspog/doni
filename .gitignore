@@ -16,3 +16,5 @@ AUTHORS
 changes
 
 project/version.go
+
+*.exe
