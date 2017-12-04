@@ -1,0 +1,42 @@
+# Example experiment config file
+
+test-pipeline:
+  desc: Test shell pipeline.
+  data:
+    columns: [Val1, Val2, Val3, Val4]
+    values:
+      - [1, 2, 3, 4]
+      - [2, 5, 7, 8]
+  collect:
+    output-txt-size:
+      file: output.txt
+      params: [size]
+    output-json-size:
+      file: output.json
+      params: [size]
+    actual-time:
+      params: [time]
+  phases:
+    setup:
+      desc: Collecting previous-state metrics.
+      cmds:
+        - touch output.txt
+        - touch output.json
+    phase-01:
+      desc: First phase of experiment.
+      cmds:
+        - start: [output-txt-size, actual-time]
+        - echo "{{ dataStr }}" > output.txt
+        - end: [output-txt-size, actual-time]
+    phase-02:
+      desc: Second phase of experiment.
+      cmds:
+        - start: [output-json-size, actual-time]
+        - echo "{{ dataStr }}" > output.json
+        - end: [output-json-size, actual-time]
+    cleanup:
+      desc: Removing generated files.
+      cmds:
+        - rm -f output.txt
+        - rm -f output.json
+      
