@@ -1,0 +1,46 @@
+rem-gen-code-project:
+  cmds:
+    - rm .\project\version.go &>/dev/null || echo >/dev/null
+  sources:
+    - project/version.go
+  silent: true
+
+add-gen-code-project:
+  cmds:
+    - task: rem-gen-code-project
+    - echo "- Generating code needed on project..."
+    - go generate {{ .REPO }}/project
+  sources:
+    - project/gen_version.go
+  generates:
+    - project/version.go
+  method: checksum
+  silent: true
+
+add-gen-code:
+  deps: [add-gen-code-project]
+  desc: Generate code needed for the project.
+
+build:
+  deps: [add-gen-code]
+  cmds:
+    - echo "Building doni..."
+    - go build
+  sources:
+    - /**/*.go
+  generates:
+    - doni{{ exeExt }}
+  method: checksum
+  silent: true
+  desc: Build doni executable.
+
+test-project:
+  deps: [add-gen-code-project]
+  cmds:
+    - echo "- Testing project package..."
+    - go test -v {{ .REPO }}/project
+  silent: true
+
+test:
+  deps: [test-project]
+  desc: Execute the tests on project.
