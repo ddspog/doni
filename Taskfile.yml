@@ -31,7 +31,6 @@ build:
     - /**/*.go
   generates:
     - doni{{ exeExt }}
-  method: checksum
   silent: true
   desc: Build doni executable.
 
@@ -55,8 +54,14 @@ test-project:
     - go test -v {{ .REPO }}/project
   silent: true
 
+test-experiment:
+  cmds:
+    - echo "- Testing experiment package..."
+    - go test -v {{ .REPO }}/experiment
+  silent: true
+
 test:
-  deps: [test-project]
+  deps: [test-project, test-experiment]
   desc: Execute the tests on project.
 
 fetch-gometalinter:

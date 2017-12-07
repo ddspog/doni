@@ -11,9 +11,11 @@
 *.out
 
 .task
+.vscode
 
 AUTHORS
 changes
+debug
 
 project/version.go
 
